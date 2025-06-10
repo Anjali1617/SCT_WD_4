@@ -1,6 +1,4 @@
-/* General Styles */
 :root {
-    /* Dark Mode Defaults */
     --bg-color: #1a1a2e;
     --card-bg: #212544;
     --text-color: #e0e0e0;
@@ -16,7 +14,6 @@
     --shadow-dark: rgba(0, 0, 0, 0.4);
 }
 
-/* Light Mode Variables */
 body.light-mode {
     --bg-color: #f0f2f5;
     --card-bg: #ffffff;
@@ -50,7 +47,6 @@ body {
     position: relative;
 }
 
-/* Background Blobs for visual interest */
 .background-blob-1, .background-blob-2 {
     position: absolute;
     border-radius: 50%;
@@ -85,7 +81,6 @@ body {
     100% { transform: translate(0, 0) scale(1); }
 }
 
-/* Theme Toggle Button */
 .theme-toggle-btn {
     position: fixed;
     top: 25px;
@@ -111,7 +106,6 @@ body {
     box-shadow: 0 8px 20px var(--shadow-dark);
 }
 
-/* App Container */
 .app-container {
     background-color: var(--card-bg);
     border-radius: 20px;
@@ -133,7 +127,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Header */
 .app-header {
     text-align: center;
 }
@@ -286,7 +279,6 @@ body.light-mode .category-selector select {
     min-width: 120px;
 }
 
-/* Stats Section */
 .stats-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted for 5 cards */
@@ -323,7 +315,6 @@ body.light-mode .category-selector select {
     color: var(--placeholder-color);
 }
 
-/* Controls Section (Search & Filter & Sort) */
 .controls-section {
     display: flex;
     flex-direction: column; /* Stack children vertically */
@@ -408,8 +399,6 @@ body.light-mode .sort-options select {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
 }
 
-
-/* Task List */
 .task-list {
     display: flex;
     flex-direction: column;
@@ -419,7 +408,6 @@ body.light-mode .sort-options select {
     padding-right: 10px; /* For scrollbar */
 }
 
-/* Scrollbar Styles */
 .task-list::-webkit-scrollbar {
     width: 8px;
 }
@@ -503,7 +491,6 @@ body.light-mode .sort-options select {
     gap: 5px;
 }
 
-/* Expandable Notes */
 .task-notes {
     font-size: 0.9rem;
     color: var(--text-color);
@@ -575,7 +562,6 @@ body.light-mode .sort-options select {
     transform: translateY(-1px);
 }
 
-/* Empty State */
 .empty-state {
     text-align: center;
     padding: 50px 20px;
@@ -606,7 +592,6 @@ body.light-mode .sort-options select {
     font-size: 1rem;
 }
 
-/* Footer Actions */
 .footer-actions {
     display: flex;
     flex-wrap: wrap;
@@ -633,7 +618,6 @@ body.light-mode .sort-options select {
     box-shadow: 0 5px 15px var(--shadow-light);
 }
 
-/* Celebration/Motivation */
 .celebration {
     position: fixed;
     top: 50%;
@@ -651,7 +635,6 @@ body.light-mode .sort-options select {
     100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
 }
 
-/* Shake Animation */
 .shake {
     animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
@@ -666,7 +649,6 @@ body.light-mode .sort-options select {
     40%, 60% { transform: translate3d(4px, 0, 0); }
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .app-container {
         padding: 25px;
@@ -698,7 +680,6 @@ body.light-mode .sort-options select {
         gap: 10px;
     }
 
-    /* Controls section for mobile */
     .controls-section {
         align-items: stretch; /* Stretch items to fill width */
     }
