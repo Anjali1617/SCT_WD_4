@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedCategory = this.value;
     });
 
-    // Event listeners for filter buttons
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', function() {
             filterTasks(this.dataset.filter);
