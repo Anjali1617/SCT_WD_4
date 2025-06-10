@@ -6,7 +6,6 @@ let selectedPriority = 'medium';
 let selectedCategory = 'other'; 
 let searchQuery = '';
 
-// Motivational quotes
 const motivationalQuotes = [
     "You've got this! 💪",
     "Every task completed is a step towards greatness! 🌟",
@@ -18,30 +17,25 @@ const motivationalQuotes = [
     "Keep pushing forward, champion! 🏆"
 ];
 
-// Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     loadTasks();
     updateStats();
     renderTasks();
-    
-    // Set default date to today
+   
     document.getElementById('taskDate').valueAsDate = new Date();
 
-    // Event listener for adding task with Enter key
     document.getElementById('taskInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             addTask();
         }
     });
 
-    // Event listeners for priority buttons
     document.querySelectorAll('.priority-btn').forEach(button => {
         button.addEventListener('click', function() {
             selectPriority(this.dataset.priority);
         });
     });
 
-    // Event listener for category select
     document.getElementById('taskCategory').addEventListener('change', function() {
         selectedCategory = this.value;
     });
@@ -53,11 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Auto-save functionality
     setInterval(saveTasks, 60000); // Save every 60 seconds
 });
 
-// Dark mode toggle
 function toggleDarkMode() {
     document.body.classList.toggle('light-mode'); // Toggles light-mode class
     const toggleIcon = document.querySelector('.theme-toggle-btn .icon');
@@ -68,7 +60,6 @@ function toggleDarkMode() {
     }
 }
 
-// Select task priority
 function selectPriority(priority) {
     selectedPriority = priority;
     document.querySelectorAll('.priority-btn').forEach(btn => {
@@ -77,7 +68,6 @@ function selectPriority(priority) {
     document.querySelector(`.priority-btn[data-priority="${priority}"]`).classList.add('selected');
 }
 
-// Add a new task or update an existing one
 function addTask() {
     const taskInput = document.getElementById('taskInput');
     const taskDate = document.getElementById('taskDate');
@@ -106,7 +96,7 @@ function addTask() {
     if (editingTaskId) {
         const taskIndex = tasks.findIndex(t => t.id === editingTaskId);
         if (taskIndex !== -1) {
-            // Keep original completed status, only update other fields
+            
             tasks[taskIndex] = { ...tasks[taskIndex], ...task, completed: tasks[taskIndex].completed };
         }
         editingTaskId = null;
@@ -116,7 +106,6 @@ function addTask() {
         showCelebration('✨');
     }
 
-    // Reset inputs
     taskInput.value = '';
     taskNotes.value = '';
     taskDate.valueAsDate = new Date(); // Reset date to today
@@ -130,7 +119,6 @@ function addTask() {
     taskInput.focus();
 }
 
-// Delete a task
 function deleteTask(id) {
     if (confirm('Are you sure you want to delete this task?')) {
         tasks = tasks.filter(task => task.id !== id);
@@ -141,7 +129,6 @@ function deleteTask(id) {
     }
 }
 
-// Duplicate a task
 function duplicateTask(id) {
     const task = tasks.find(task => task.id === id);
     if (task) {
@@ -160,7 +147,6 @@ function duplicateTask(id) {
     }
 }
 
-// Toggle task completion status
 function toggleComplete(id) {
     const task = tasks.find(task => task.id === id);
     if (task) {
@@ -176,7 +162,6 @@ function toggleComplete(id) {
     }
 }
 
-// Edit an existing task
 function editTask(id) {
     const task = tasks.find(task => task.id === id);
     if (task) {
@@ -185,7 +170,6 @@ function editTask(id) {
         document.getElementById('taskTime').value = task.time;
         document.getElementById('taskNotes').value = task.notes || '';
 
-        // Update priority and category selections
         selectPriority(task.priority);
         document.getElementById('taskCategory').value = task.category;
         selectedCategory = task.category; // Ensure JS variable is updated
@@ -196,13 +180,11 @@ function editTask(id) {
     }
 }
 
-// Search tasks
 function searchTasks() {
     searchQuery = document.getElementById('searchInput').value.toLowerCase();
     renderTasks();
 }
 
-// Filter tasks based on selected filter
 function filterTasks(filter) {
     currentFilter = filter;
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -212,13 +194,11 @@ function filterTasks(filter) {
     renderTasks();
 }
 
-// New: Sort tasks
 function sortTasks(sortOption) {
     currentSort = sortOption;
     renderTasks();
 }
 
-// Render tasks to the display
 function renderTasks() {
     const todoList = document.getElementById('todoList');
     let filteredAndSortedTasks = tasks.filter(task => {
@@ -240,7 +220,6 @@ function renderTasks() {
         }
     });
 
-    // Apply sorting
     filteredAndSortedTasks.sort((a, b) => {
         if (currentSort === 'priority') {
             const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
@@ -307,7 +286,6 @@ function renderTasks() {
     `).join('');
 }
 
-// New: Toggle notes expansion
 function toggleNotesExpansion(element) {
     element.classList.toggle('expanded');
     const button = element.querySelector('.toggle-notes-btn');
@@ -320,8 +298,6 @@ function toggleNotesExpansion(element) {
     }
 }
 
-
-// Update statistics
 function updateStats() {
     const total = tasks.length;
     const completed = tasks.filter(task => task.completed).length;
@@ -334,18 +310,14 @@ function updateStats() {
     document.getElementById('pendingTasks').textContent = pending;
     document.getElementById('todayTasks').textContent = pendingToday; // Show pending tasks for today
     
-    // Productivity score calculation: higher weight for completed tasks
     const productivity = total > 0 ? Math.round((completed / total) * 100) : 0;
     document.getElementById('productivityScore').textContent = productivity + '%';
 }
 
-
-// Save tasks to local storage
 function saveTasks() {
     localStorage.setItem('taskFlowProTasks', JSON.stringify(tasks));
 }
 
-// Load tasks from local storage
 function loadTasks() {
     const storedTasks = localStorage.getItem('taskFlowProTasks');
     if (storedTasks) {
@@ -353,7 +325,6 @@ function loadTasks() {
     }
 }
 
-// Export tasks
 function exportTasks(format) {
     let filename = `TaskFlow_Pro_Tasks.${format}`;
     let data = '';
@@ -378,7 +349,6 @@ function exportTasks(format) {
     showCelebration('💾');
 }
 
-// Clear all tasks
 function clearAllTasks() {
     if (confirm('Are you sure you want to clear ALL tasks? This cannot be undone!')) {
         tasks = [];
@@ -389,7 +359,6 @@ function clearAllTasks() {
     }
 }
 
-// New: Clear only completed tasks
 function clearCompletedTasks() {
     if (confirm('Are you sure you want to clear all COMPLETED tasks?')) {
         tasks = tasks.filter(task => !task.completed);
@@ -400,13 +369,11 @@ function clearCompletedTasks() {
     }
 }
 
-// Generate motivational quote
 function generateMotivation() {
     const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
     showCelebration(motivationalQuotes[randomIndex]);
 }
 
-// Helper function to escape HTML for display
 function escapeHtml(text) {
     const map = {
         '&': '&amp;',
@@ -418,14 +385,12 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
-// Helper function to format date
 function formatDate(dateString) {
     if (!dateString) return 'No Due Date';
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
 
-// Helper function for priority icons
 function getPriorityIcon(priority) {
     switch(priority) {
         case 'high': return '🔥';
@@ -435,7 +400,6 @@ function getPriorityIcon(priority) {
     }
 }
 
-// Helper function for category icons
 function getCategoryIcon(category) {
     switch(category) {
         case 'personal': return '<i class="fas fa-user"></i>';
@@ -448,7 +412,6 @@ function getCategoryIcon(category) {
     }
 }
 
-// Empty state messages
 function getEmptyStateEmoji() {
     const emojis = {
         all: '😴',
@@ -485,7 +448,6 @@ function getEmptyStateMessage() {
     return messages[currentFilter] || 'Start by adding your first task to conquer the day.';
 }
 
-// Celebration animation
 function showCelebration(content) {
     const celebration = document.createElement('div');
     celebration.className = 'celebration';
@@ -499,7 +461,6 @@ function showCelebration(content) {
     }, 1200); 
 }
 
-// Shake element animation for input validation
 function shakeElement(element) {
     element.classList.add('shake');
     setTimeout(() => element.classList.remove('shake'), 500); 
