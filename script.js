@@ -46,16 +46,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    setInterval(saveTasks, 60000); // Save every 60 seconds
+    setInterval(saveTasks, 60000); 
 });
 
 function toggleDarkMode() {
-    document.body.classList.toggle('light-mode'); // Toggles light-mode class
+    document.body.classList.toggle('light-mode');
     const toggleIcon = document.querySelector('.theme-toggle-btn .icon');
     if (document.body.classList.contains('light-mode')) {
-        toggleIcon.textContent = '🌙'; // Moon icon for light mode
+        toggleIcon.textContent = '🌙'; 
     } else {
-        toggleIcon.textContent = '☀️'; // Sun icon for dark mode
+        toggleIcon.textContent = '☀️'; 
     }
 }
 
@@ -81,12 +81,12 @@ function addTask() {
     }
 
     const task = {
-        id: editingTaskId || Date.now(), // Use existing ID if editing, otherwise new
+        id: editingTaskId || Date.now(), 
         text: taskText,
         completed: false,
         priority: selectedPriority,
         category: selectedCategory,
-        date: taskDate.value || '', // Allow empty date for no specific due date
+        date: taskDate.value || '', 
         time: taskTime.value || '',
         notes: taskNotes.value.trim(),
         createdAt: editingTaskId ? tasks.find(t => t.id === editingTaskId).createdAt : new Date().toLocaleString()
@@ -101,16 +101,16 @@ function addTask() {
         editingTaskId = null;
         addTaskBtn.textContent = 'Add Task';
     } else {
-        tasks.unshift(task); // Add to the beginning for new tasks
+        tasks.unshift(task); 
         showCelebration('✨');
     }
 
     taskInput.value = '';
     taskNotes.value = '';
-    taskDate.valueAsDate = new Date(); // Reset date to today
+    taskDate.valueAsDate = new Date(); 
     taskTime.value = '';
-    selectPriority('medium'); // Reset priority selection
-    document.getElementById('taskCategory').value = 'other'; // Reset category
+    selectPriority('medium'); 
+    document.getElementById('taskCategory').value = 'other'; 
     
     saveTasks();
     updateStats();
@@ -135,10 +135,10 @@ function duplicateTask(id) {
             ...task,
             id: Date.now(),
             text: task.text + ' (Copy)',
-            completed: false, // Duplicates should start as pending
+            completed: false, 
             createdAt: new Date().toLocaleString()
         };
-        tasks.unshift(duplicatedTask); // Add duplicated task to the beginning
+        tasks.unshift(duplicatedTask); 
         saveTasks();
         updateStats();
         renderTasks();
@@ -152,7 +152,7 @@ function toggleComplete(id) {
         task.completed = !task.completed;
         saveTasks();
         updateStats();
-        renderTasks(); // Re-render to apply completed styling
+        renderTasks(); 
         if (task.completed) {
             showCelebration('🎉');
         } else {
@@ -171,7 +171,7 @@ function editTask(id) {
 
         selectPriority(task.priority);
         document.getElementById('taskCategory').value = task.category;
-        selectedCategory = task.category; // Ensure JS variable is updated
+        selectedCategory = task.category; 
 
         editingTaskId = id;
         document.getElementById('addTaskBtn').textContent = 'Update Task';
@@ -207,15 +207,15 @@ function renderTasks() {
         if (!matchesSearch) return false;
 
         const today = new Date().toISOString().split('T')[0];
-        const taskDueDate = task.date; // e.g., "2025-12-31"
+        const taskDueDate = task.date; 
 
         switch (currentFilter) {
             case 'completed': return task.completed;
             case 'pending': return !task.completed;
-            case 'today': return !task.completed && taskDueDate === today; // Only pending for today
+            case 'today': return !task.completed && taskDueDate === today; 
             case 'upcoming': return !task.completed && taskDueDate && taskDueDate > today;
             case 'overdue': return !task.completed && taskDueDate && taskDueDate < today;
-            default: return true; // 'all' filter
+            default: return true; 
         }
     });
 
@@ -227,11 +227,11 @@ function renderTasks() {
             const dateA = a.date ? new Date(a.date).getTime() : Infinity;
             const dateB = b.date ? new Date(b.date).getTime() : Infinity;
             if (dateA === Infinity && dateB === Infinity) return 0;
-            if (dateA === Infinity) return 1; // Undated tasks go last
+            if (dateA === Infinity) return 1; 
             if (dateB === Infinity) return -1;
-            return dateA - dateB; // Ascending by date
+            return dateA - dateB; 
         } else if (currentSort === 'createdDate') {
-            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(); // Ascending by creation date
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(); 
         }
         return b.id - a.id; // Default: latest first (by ID)
     });
@@ -307,7 +307,7 @@ function updateStats() {
     document.getElementById('totalTasks').textContent = total;
     document.getElementById('completedTasks').textContent = completed;
     document.getElementById('pendingTasks').textContent = pending;
-    document.getElementById('todayTasks').textContent = pendingToday; // Show pending tasks for today
+    document.getElementById('todayTasks').textContent = pendingToday; 
     
     const productivity = total > 0 ? Math.round((completed / total) * 100) : 0;
     document.getElementById('productivityScore').textContent = productivity + '%';
