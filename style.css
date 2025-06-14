@@ -7,9 +7,9 @@
     --input-bg: #2c305c;
     --primary-btn-bg: linear-gradient(135deg, #0f4c75, #3282b8);
     --primary-btn-hover: linear-gradient(135deg, #3282b8, #0f4c75);
-    --accent-color-high: #ff6b6b; /* Red */
-    --accent-color-medium: #feca57; /* Yellow/Orange */
-    --accent-color-low: #28a745; /* Green */
+    --accent-color-high: #ff6b6b; 
+    --accent-color-medium: #feca57;
+    --accent-color-low: #28a745;
     --shadow-light: rgba(0, 0, 0, 0.2);
     --shadow-dark: rgba(0, 0, 0, 0.4);
 }
@@ -50,8 +50,8 @@ body {
 .background-blob-1, .background-blob-2 {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px); /* Increased blur */
-    opacity: 0.6; /* Increased opacity */
+    filter: blur(80px); 
+    opacity: 0.6; 
     z-index: -1;
     animation: blobAnimation 15s infinite alternate ease-in-out;
 }
@@ -118,8 +118,8 @@ body {
     gap: 30px;
     border: 1px solid var(--border-color);
     animation: fadeIn 0.8s ease-out;
-    position: relative; /* For z-index */
-    z-index: 1; /* Ensure it's above blobs */
+    position: relative; 
+    z-index: 1; 
 }
 
 @keyframes fadeIn {
@@ -156,8 +156,6 @@ body {
     font-size: 1rem;
     color: var(--placeholder-color);
 }
-
-/* Input Section */
 .input-section {
     display: flex;
     flex-direction: column;
@@ -180,8 +178,8 @@ body {
     color: var(--text-color);
     font-size: 1rem;
     transition: all 0.3s ease;
-    resize: vertical; /* Allow vertical resizing for textarea */
-    min-height: 50px; /* Min height for textarea */
+    resize: vertical; 
+    min-height: 50px;
 }
 
 .input-section input[type="text"]::placeholder,
@@ -193,7 +191,7 @@ body {
 .input-section textarea:focus,
 .input-section select:focus {
     outline: none;
-    border-color: #6c5ce7; /* Accent color on focus */
+    border-color: #6c5ce7;
     box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
 }
 
@@ -281,7 +279,7 @@ body.light-mode .category-selector select {
 
 .stats-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted for 5 cards */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
     gap: 15px;
     text-align: center;
 }
@@ -317,17 +315,17 @@ body.light-mode .category-selector select {
 
 .controls-section {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    gap: 20px; /* Space between search, filters, and sort */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column; 
+    gap: 20px;
+    align-items: flex-start; 
 }
 
 .search-input-wrapper {
-    width: 100%; /* Make search input take full width */
+    width: 100%;
 }
 
 #searchInput {
-    width: 100%; /* Ensure the input itself fills its wrapper */
+    width: 100%;
     padding: 10px 15px;
     border-radius: 25px;
     border: 1px solid var(--border-color);
@@ -341,8 +339,8 @@ body.light-mode .category-selector select {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    width: 100%; /* Ensure filters take full width */
-    justify-content: flex-start; /* Align filters to the start */
+    width: 100%; 
+    justify-content: flex-start; 
 }
 
 .filter-btn {
@@ -371,8 +369,8 @@ body.light-mode .category-selector select {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%; /* Ensure sort options take full width */
-    justify-content: flex-start; /* Align sort options to the start */
+    width: 100%; 
+    justify-content: flex-start; 
 }
 
 .sort-options label {
@@ -405,7 +403,7 @@ body.light-mode .sort-options select {
     gap: 15px;
     max-height: 500px;
     overflow-y: auto;
-    padding-right: 10px; /* For scrollbar */
+    padding-right: 10px; 
 }
 
 .task-list::-webkit-scrollbar {
@@ -418,7 +416,7 @@ body.light-mode .sort-options select {
 }
 
 .task-list::-webkit-scrollbar-thumb {
-    background: rgba(108, 92, 231, 0.5); /* Accent color */
+    background: rgba(108, 92, 231, 0.5); 
     border-radius: 10px;
 }
 
@@ -450,8 +448,7 @@ body.light-mode .sort-options select {
 .task-item.completed {
     opacity: 0.7;
     text-decoration: line-through;
-    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker for completed */
-}
+    background-color: rgba(0, 0, 0, 0.1); 
 
 .task-header {
     display: flex;
@@ -494,9 +491,9 @@ body.light-mode .sort-options select {
 .task-notes {
     font-size: 0.9rem;
     color: var(--text-color);
-    white-space: pre-wrap; /* Preserve formatting */
-    word-break: break-word; /* Break long words */
-    max-height: 4.5em; /* Approximately 3 lines * 1.5em line-height */
+    white-space: pre-wrap; 
+    word-break: break-word; 
+    max-height: 4.5em;
     overflow: hidden;
     position: relative;
     transition: max-height 0.3s ease-out;
@@ -506,7 +503,7 @@ body.light-mode .sort-options select {
 
 .task-notes.expanded {
     max-height: fit-content;
-    padding-bottom: 25px; /* Make space for expand/collapse button */
+    padding-bottom: 25px;
 }
 
 .task-notes .toggle-notes-btn {
@@ -681,7 +678,7 @@ body.light-mode .sort-options select {
     }
 
     .controls-section {
-        align-items: stretch; /* Stretch items to fill width */
+        align-items: stretch; 
     }
 
     .filter-buttons {
@@ -711,7 +708,7 @@ body.light-mode .sort-options select {
         font-size: 1rem;
     }
     .task-action-btn {
-        flex-grow: 1; /* Make buttons expand on small screens */
+        flex-grow: 1; 
     }
     .footer-actions {
         flex-direction: column;
