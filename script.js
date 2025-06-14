@@ -1,6 +1,6 @@
 let tasks = [];
 let currentFilter = 'all';
-let currentSort = 'default'; // New: default sort option
+let currentSort = 'default'; 
 let editingTaskId = null;
 let selectedPriority = 'medium'; 
 let selectedCategory = 'other'; 
